@@ -1,3 +1,11 @@
+@import '~@variant/profile/lib/colors/index.module.css';
+@import '~@variant/profile/lib/typography/index.module.css';
+
+:root {
+  --color-background: var(--color-secondary4__tint3);
+}
+
 html {
   font-size: 1rem;
+  background-color: var(--color-background);
 }
