@@ -2,10 +2,22 @@
 @import '~@variant/profile/lib/typography/index.module.css';
 
 :root {
+  --content-width: 850px;
   --color-background: var(--color-secondary4__tint3);
 }
 
 html {
   font-size: 1rem;
   background-color: var(--color-background);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
+
+img {
+  width: 100%;
 }
