@@ -2,66 +2,79 @@ import { FC } from 'react';
 import styles from './Agenda.module.css';
 import { Venue } from './venue/Venue';
 import { FeatureSlot } from './feature-slot/FeatureSlot';
-import { Feature, Program } from './types';
-import { calculateSlotPositionStyle, getUniqueVenues } from './agendaUtils';
+import { Feature, Program, TimeSlot } from './types';
+import {
+  calculateSlotPositionStyle,
+  getUniqueVenues,
+  time,
+} from './agendaUtils';
+import { RowTimeSlot } from './row-time-slot/RowTimeSlot';
+import { VenueHeader } from './venue/VenueHeader';
 
 export const program: Program = {
-  from: {
-    hour: 10,
-    minutes: 0,
-  },
-  to: {
-    hour: 14,
-    minutes: 30,
-  },
+  from: time('07:45'),
+  to: time('13:00'),
   features: [
     {
-      title: 'Snakke sammen',
-      venue: 'Oktetten',
-      from: {
-        hour: 10,
-        minutes: 0,
-      },
-      to: {
-        hour: 12,
-        minutes: 0,
-      },
+      title: 'Kaffe og mingling',
+      venue: 'Amfiet',
+      from: time('07:45'),
+      to: time('08:15'),
     },
     {
-      title: 'Snakke etter lunsj',
-      venue: 'Oktetten',
-      from: {
-        hour: 12,
-        minutes: 30,
-      },
-      to: {
-        hour: 14,
-        minutes: 15,
-      },
+      title: 'Velkommen til Variantdag!',
+      venue: 'Amfiet',
+      from: time('08:15'),
+      to: time('08:30'),
     },
     {
-      title: 'Diskutere',
+      title: 'Prosjektpresentasjon',
+      venue: 'Amfiet',
+      from: time('08:30'),
+      to: time('09:00'),
+    },
+    {
+      title: 'Skudd: hvordan jobber vi sammen?',
+      venue: 'Amfiet',
+      from: time('09:15'),
+      to: time('11:30'),
+    },
+    {
+      title:
+        'Egenarbeid. Kjempelang tekst som beskriver hva egenarbeid består av. Heisann, hoppsann, deisann.',
       venue: 'Sekstetten',
-      from: {
-        hour: 10,
-        minutes: 15,
-      },
-      to: {
-        hour: 11,
-        minutes: 30,
-      },
+      from: time('09:15'),
+      to: time('11:30'),
     },
     {
-      title: 'Kverulere',
-      venue: 'Kvartetten',
-      from: {
-        hour: 12,
-        minutes: 0,
-      },
-      to: {
-        hour: 14,
-        minutes: 0,
-      },
+      title: 'Hvordan holde gode workshops?',
+      venue: 'Oktetten',
+      from: time('09:15'),
+      to: time('11:30'),
+    },
+  ],
+  rowTimeSlots: [
+    // {
+    //   from: time('07:45'),
+    //   to: time('08:15'),
+    // },
+    {
+      from: time('08:15'),
+      to: time('09:00'),
+    },
+    {
+      from: time('09:00'),
+      to: time('09:15'),
+      description: 'Pause',
+    },
+    {
+      from: time('09:15'),
+      to: time('11:30'),
+    },
+    {
+      from: time('11:30'),
+      to: time('12:30'),
+      description: 'Lunsj på Digs',
     },
   ],
 };
@@ -72,7 +85,13 @@ type Props = {
 };
 
 export const Agenda: FC<Props> = ({ program, renderFeature }) => {
-  const venues = getUniqueVenues(program.features).map((venue) => {
+  const uniqueVenues = getUniqueVenues(program.features);
+
+  const venueHeaders = uniqueVenues.map((venue) => (
+    <VenueHeader key={venue}>{venue}</VenueHeader>
+  ));
+
+  const venues = uniqueVenues.map((venue) => {
     const featuresInVenue = program.features.filter(
       (feature) => feature.venue === venue,
     );
@@ -86,12 +105,25 @@ export const Agenda: FC<Props> = ({ program, renderFeature }) => {
       </FeatureSlot>
     ));
 
-    return (
-      <Venue key={venue} title={venue}>
-        {features}
-      </Venue>
-    );
+    return <Venue key={venue}>{features}</Venue>;
   });
 
-  return <section className={styles.agenda}>{venues}</section>;
+  const rowTimeSlots = program.rowTimeSlots.map((row: TimeSlot) => (
+    <RowTimeSlot
+      key={`${row.from}+${row.to}`}
+      style={calculateSlotPositionStyle(program, row)}
+      timeSlot={row}
+      renderContent={(slot) => <div>{slot.description}</div>}
+    />
+  ));
+
+  return (
+    <section className={styles.agenda}>
+      <div className={styles.venueHeaders}>{venueHeaders}</div>
+      <div className={styles.content}>
+        <div className={styles.rowTimeSlots}>{rowTimeSlots}</div>
+        <div className={styles.venues}>{venues}</div>
+      </div>
+    </section>
+  );
 };

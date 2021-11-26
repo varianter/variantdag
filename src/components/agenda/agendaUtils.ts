@@ -27,3 +27,14 @@ export const calculateSlotPositionStyle = (program: Program, slot: Slot) => {
     }%`,
   };
 };
+
+export const time = (time: string): Time => {
+  const [hour, minutes] = time.split(':').map(Number);
+  return {
+    hour: hour,
+    minutes: minutes,
+  };
+};
+
+export const toTimeString = (time: Time): string =>
+  `${time.hour}:${time.minutes}`;

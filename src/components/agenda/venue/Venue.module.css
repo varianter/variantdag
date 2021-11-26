@@ -1,16 +1,9 @@
 .venue {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.featureSlots {
   height: 100%;
-}
-
-.venueTitle {
-  height: 10%;
-}
-
-.venueContent {
-  border: 1px solid red;
-  height: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
   position: relative;
 }

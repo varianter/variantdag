@@ -1,15 +1,10 @@
 import { FC } from 'react';
 import styles from './Venue.module.css';
 
-type Props = {
-  title: string;
-};
-
-export const Venue: FC<Props> = ({ children, title }) => {
+export const Venue: FC = ({ children }) => {
   return (
     <div className={styles.venue}>
-      <div className={styles.venueTitle}>{title}</div>
-      <div className={styles.venueContent}>{children}</div>
+      <div className={styles.featureSlots}>{children}</div>
     </div>
   );
 };

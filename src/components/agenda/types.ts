@@ -34,6 +34,13 @@ export interface Feature extends Slot {
 }
 
 /**
+ * Describes a row in the Agenda table with a from and to time setting
+ */
+export interface TimeSlot extends Slot {
+  description?: string;
+}
+
+/**
  * The entire program of a conference. The variables 'from' and 'to' describes
  * the start and end times of the program, and is necessary for style calculations.
  */
@@ -41,4 +48,5 @@ export type Program = {
   from: Time;
   to: Time;
   features: Feature[];
+  rowTimeSlots: TimeSlot[];
 };

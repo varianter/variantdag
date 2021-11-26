@@ -1,4 +1,4 @@
-import { asDuration, calculateSlotPositionStyle } from './agendaUtils';
+import { asDuration, calculateSlotPositionStyle, time } from './agendaUtils';
 import { Feature, Program, Time } from './types';
 
 describe('toDurationMinutes', () => {
@@ -31,11 +31,12 @@ describe('toDurationMinutes', () => {
 });
 
 describe('calculateSlotPositionStyle', () => {
-  it('calculates size for slot that that starts at program start', () => {
+  it('calculates size for slot that starts at program start', () => {
     const program: Program = {
       from: { hour: 8, minutes: 0 },
       to: { hour: 10, minutes: 0 },
       features: [],
+      rowTimeSlots: [],
     };
 
     const feature: Feature = {
@@ -60,6 +61,7 @@ describe('calculateSlotPositionStyle', () => {
       from: { hour: 8, minutes: 0 },
       to: { hour: 10, minutes: 0 },
       features: [],
+      rowTimeSlots: [],
     };
 
     const feature: Feature = {
@@ -84,6 +86,7 @@ describe('calculateSlotPositionStyle', () => {
       from: { hour: 8, minutes: 0 },
       to: { hour: 10, minutes: 0 },
       features: [],
+      rowTimeSlots: [],
     };
 
     const feature: Feature = {
@@ -101,5 +104,14 @@ describe('calculateSlotPositionStyle', () => {
     const style = calculateSlotPositionStyle(program, feature);
 
     expect(style).toMatchObject(expectedStyle);
+  });
+});
+
+describe('toTime', () => {
+  it('parses 10:30 to 10 hours 30 minutes', () => {
+    expect(time('10:30')).toMatchObject({
+      hour: 10,
+      minutes: 30,
+    } as Time);
   });
 });
