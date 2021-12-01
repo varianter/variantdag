@@ -1,5 +1,5 @@
-import { asDuration, calculateSlotPositionStyle, time } from './agendaUtils';
-import { Feature, Program, Time } from './types';
+import { asDuration, calculateSlotPositionStyle } from './agendaUtils';
+import { Feature, Program, Time } from '../types';
 
 describe('toDurationMinutes', () => {
   it('translates 0 hours as 0 minutes', () => {
@@ -104,14 +104,5 @@ describe('calculateSlotPositionStyle', () => {
     const style = calculateSlotPositionStyle(program, feature);
 
     expect(style).toMatchObject(expectedStyle);
-  });
-});
-
-describe('toTime', () => {
-  it('parses 10:30 to 10 hours 30 minutes', () => {
-    expect(time('10:30')).toMatchObject({
-      hour: 10,
-      minutes: 30,
-    } as Time);
   });
 });

@@ -1,19 +1,11 @@
 import { FC } from 'react';
-import styles from './Agenda.module.css';
-import { Venue } from './venue/Venue';
-import { FeatureSlot } from './feature-slot/FeatureSlot';
-import { Feature, Program, TimeSlot } from './types';
-import {
-  calculateSlotPositionStyle,
-  getUniqueVenues,
-  time,
-} from './agendaUtils';
-import { RowTimeSlot } from './row-time-slot/RowTimeSlot';
-import { VenueHeader } from './venue/VenueHeader';
+import { time, format } from './agenda-table/utils/timeUtils';
+import { Feature, Program, TimeSlot, Venue } from './agenda-table/types';
+import { AgendaTable } from './agenda-table/AgendaTable';
 
-export const program: Program = {
+export const programPartOne: Program = {
   from: time('07:45'),
-  to: time('13:00'),
+  to: time('12:30'),
   features: [
     {
       title: 'Kaffe og mingling',
@@ -54,22 +46,10 @@ export const program: Program = {
     },
   ],
   rowTimeSlots: [
-    // {
-    //   from: time('07:45'),
-    //   to: time('08:15'),
-    // },
-    {
-      from: time('08:15'),
-      to: time('09:00'),
-    },
     {
       from: time('09:00'),
       to: time('09:15'),
       description: 'Pause',
-    },
-    {
-      from: time('09:15'),
-      to: time('11:30'),
     },
     {
       from: time('11:30'),
@@ -79,51 +59,81 @@ export const program: Program = {
   ],
 };
 
-type Props = {
-  program: Program;
-  renderFeature: (feature: Feature) => React.ReactElement;
+export const programPartTwo: Program = {
+  from: time('12:30'),
+  to: time('16:00'),
+  features: [
+    {
+      title: 'Samarbeidscage for design',
+      venue: 'Digs 5. egt - East',
+      from: time('12:30'),
+      to: time('13:45'),
+    },
+    {
+      title: 'Planlegging av skudd: sky',
+      venue: 'Digs 5. etg - West',
+      from: time('12:30'),
+      to: time('14:45'),
+    },
+    {
+      title: 'Bærekraft og OKR',
+      venue: 'Lounge på Digs',
+      from: time('12:30'),
+      to: time('14:45'),
+    },
+    {
+      title: 'OKR Q4 \n Selskapsstatus',
+      venue: 'Digs 5. egt - East',
+      from: time('15:00'),
+      to: time('16:00'),
+    },
+  ],
+  rowTimeSlots: [
+    {
+      from: time('14:45'),
+      to: time('15:00'),
+      description: 'Pause',
+    },
+  ],
 };
 
-export const Agenda: FC<Props> = ({ program, renderFeature }) => {
-  const uniqueVenues = getUniqueVenues(program.features);
+const renderFeature = (feature: Feature) => (
+  <>
+    <div>
+      {format(feature.from)} - {format(feature.to)}
+    </div>
+    <div>{feature.title}</div>
+  </>
+);
 
-  const venueHeaders = uniqueVenues.map((venue) => (
-    <VenueHeader key={venue}>{venue}</VenueHeader>
-  ));
+const renderRow = (slot: TimeSlot) => (
+  <div>
+    {format(slot.from)} - {format(slot.to)} {slot.description}
+  </div>
+);
 
-  const venues = uniqueVenues.map((venue) => {
-    const featuresInVenue = program.features.filter(
-      (feature) => feature.venue === venue,
-    );
+const renderVenueHeader = (venue: Venue) => <h4>{venue}</h4>;
 
-    const features = featuresInVenue.map((feature) => (
-      <FeatureSlot
-        key={feature.title}
-        style={calculateSlotPositionStyle(program, feature)}
-      >
-        {renderFeature(feature)}
-      </FeatureSlot>
-    ));
-
-    return <Venue key={venue}>{features}</Venue>;
-  });
-
-  const rowTimeSlots = program.rowTimeSlots.map((row: TimeSlot) => (
-    <RowTimeSlot
-      key={`${row.from}+${row.to}`}
-      style={calculateSlotPositionStyle(program, row)}
-      timeSlot={row}
-      renderContent={(slot) => <div>{slot.description}</div>}
-    />
-  ));
-
+export const Agenda: FC = ({}) => {
   return (
-    <section className={styles.agenda}>
-      <div className={styles.venueHeaders}>{venueHeaders}</div>
-      <div className={styles.content}>
-        <div className={styles.rowTimeSlots}>{rowTimeSlots}</div>
-        <div className={styles.venues}>{venues}</div>
-      </div>
-    </section>
+    <div>
+      <AgendaTable
+        program={programPartOne}
+        renderFeature={renderFeature}
+        renderRow={renderRow}
+        renderVenueHeader={renderVenueHeader}
+        height={'1200px'}
+      />
+
+      <div style={{ height: '100px' }} />
+
+      <AgendaTable
+        program={programPartTwo}
+        renderFeature={renderFeature}
+        renderRow={renderRow}
+        renderVenueHeader={renderVenueHeader}
+        height={'400px'}
+      />
+    </div>
   );
 };
