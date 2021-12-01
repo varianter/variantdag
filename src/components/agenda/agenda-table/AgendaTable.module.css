@@ -1,6 +1,5 @@
 .agenda {
   width: 100%;
-  border: 1px solid salmon;
 }
 
 .content {
@@ -9,7 +8,7 @@
   position: relative;
 }
 
-.rowTimeSlots {
+.rowSlots {
   width: 100%;
   height: 100%;
   position: absolute;

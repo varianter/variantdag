@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AgendaTable Renders slots of correct size 1`] = `
+<article
+  className="agenda"
+  style={
+    Object {
+      "height": "1200px",
+    }
+  }
+>
+  <header
+    className="venueHeaders"
+  >
+    <div
+      className="header"
+    >
+      <div>
+        "Digs 5. egt - East"
+      </div>
+    </div>
+    <div
+      className="header"
+    >
+      <div>
+        "Digs 5. etg - West"
+      </div>
+    </div>
+    <div
+      className="header"
+    >
+      <div>
+        "Lounge på Digs"
+      </div>
+    </div>
+  </header>
+  <main
+    className="content"
+  >
+    <div
+      className="rowSlots"
+    >
+      <div
+        className="rowSlot"
+        style={
+          Object {
+            "height": "7.142857142857142%",
+            "top": "64.28571428571429%",
+          }
+        }
+      >
+        <div>
+          {"from":{"hour":14,"minutes":45},"to":{"hour":15,"minutes":0},"description":"Pause"}
+        </div>
+      </div>
+    </div>
+    <div
+      className="venues"
+    >
+      <div
+        className="venue"
+      >
+        <div
+          className="featureSlots"
+        >
+          <div
+            className="featureSlot"
+            style={
+              Object {
+                "height": "35.714285714285715%",
+                "top": "0%",
+              }
+            }
+          >
+            <div>
+              {"title":"Samarbeidscage for design","venue":"Digs 5. egt - East","from":{"hour":12,"minutes":30},"to":{"hour":13,"minutes":45}}
+            </div>
+          </div>
+          <div
+            className="featureSlot"
+            style={
+              Object {
+                "height": "28.57142857142857%",
+                "top": "71.42857142857143%",
+              }
+            }
+          >
+            <div>
+              {"title":"OKR Q4 \\n Selskapsstatus","venue":"Digs 5. egt - East","from":{"hour":15,"minutes":0},"to":{"hour":16,"minutes":0}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="venue"
+      >
+        <div
+          className="featureSlots"
+        >
+          <div
+            className="featureSlot"
+            style={
+              Object {
+                "height": "50%",
+                "top": "14.285714285714285%",
+              }
+            }
+          >
+            <div>
+              {"title":"Planlegging av skudd: sky","venue":"Digs 5. etg - West","from":{"hour":13,"minutes":0},"to":{"hour":14,"minutes":45}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="venue"
+      >
+        <div
+          className="featureSlots"
+        >
+          <div
+            className="featureSlot"
+            style={
+              Object {
+                "height": "64.28571428571429%",
+                "top": "0%",
+              }
+            }
+          >
+            <div>
+              {"title":"Bærekraft og OKR","venue":"Lounge på Digs","from":{"hour":12,"minutes":30},"to":{"hour":14,"minutes":45}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</article>
+`;

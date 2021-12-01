@@ -1,4 +1,4 @@
-import { asDuration, calculateSlotPositionStyle } from './agendaUtils';
+import { asDuration, calculateSlotPositionStyle } from './durationUtils';
 import { Feature, Program, Time } from '../types';
 
 describe('toDurationMinutes', () => {
@@ -36,7 +36,7 @@ describe('calculateSlotPositionStyle', () => {
       from: { hour: 8, minutes: 0 },
       to: { hour: 10, minutes: 0 },
       features: [],
-      rowTimeSlots: [],
+      rows: [],
     };
 
     const feature: Feature = {
@@ -61,7 +61,7 @@ describe('calculateSlotPositionStyle', () => {
       from: { hour: 8, minutes: 0 },
       to: { hour: 10, minutes: 0 },
       features: [],
-      rowTimeSlots: [],
+      rows: [],
     };
 
     const feature: Feature = {
@@ -86,7 +86,7 @@ describe('calculateSlotPositionStyle', () => {
       from: { hour: 8, minutes: 0 },
       to: { hour: 10, minutes: 0 },
       features: [],
-      rowTimeSlots: [],
+      rows: [],
     };
 
     const feature: Feature = {

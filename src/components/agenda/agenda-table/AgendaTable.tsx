@@ -2,25 +2,15 @@ import { FC } from 'react';
 import styles from './AgendaTable.module.css';
 import { Venue } from './venue/Venue';
 import { FeatureSlot } from './feature-slot/FeatureSlot';
-import { Venue as VenueType, Feature, Program, TimeSlot } from './types';
-import {
-  calculateSlotPositionStyle,
-  getUniqueVenues,
-} from './utils/agendaUtils';
-import { RowTimeSlot } from './row-time-slot/RowTimeSlot';
+import { VenueName, Feature, Program, Row } from './types';
+import { calculateSlotPositionStyle } from './utils/durationUtils';
+import { getUniqueVenues } from './utils/featureUtils';
+import { RowSlot } from './row-slot/RowSlot';
 import { VenueHeader } from './venue/VenueHeader';
 import { format } from './utils/timeUtils';
 
-type Props = {
-  program: Program;
-  height: string;
-  renderFeature: (feature: Feature) => React.ReactElement;
-  renderRow: (timeSlot: TimeSlot) => React.ReactElement;
-  renderVenueHeader: (venue: string) => React.ReactElement;
-};
-
 const generateVenueHeaders = (
-  uniqueVenues: VenueType[],
+  uniqueVenues: VenueName[],
   renderVenueHeader: (venue: string) => React.ReactElement,
 ) =>
   uniqueVenues.map((venue) => (
@@ -28,7 +18,7 @@ const generateVenueHeaders = (
   ));
 
 const generateVenues = (
-  uniqueVenues: VenueType[],
+  uniqueVenues: VenueName[],
   program: Program,
   renderFeature: (feature: Feature) => React.ReactElement,
 ) =>
@@ -51,16 +41,24 @@ const generateVenues = (
 
 const generateRows = (
   program: Program,
-  renderRow: (timeSlot: TimeSlot) => React.ReactElement,
+  renderRow: (timeSlot: Row) => React.ReactElement,
 ) =>
-  program.rowTimeSlots.map((row: TimeSlot) => (
-    <RowTimeSlot
+  program.rows.map((row: Row) => (
+    <RowSlot
       key={`${format(row.from)}-${format(row.to)}`}
       style={calculateSlotPositionStyle(program, row)}
       timeSlot={row}
       renderContent={renderRow}
     />
   ));
+
+type Props = {
+  program: Program;
+  height: string;
+  renderFeature: (feature: Feature) => React.ReactElement;
+  renderRow: (timeSlot: Row) => React.ReactElement;
+  renderVenueHeader: (venue: VenueName) => React.ReactElement;
+};
 
 /**
  * Creates a Agenda with Venues (e.g 'Amfiet') containing one or more Features (e.g talks, presentations or workshops).
@@ -83,15 +81,15 @@ export const AgendaTable: FC<Props> = ({
   const uniqueVenues = getUniqueVenues(program.features);
   const venueHeaders = generateVenueHeaders(uniqueVenues, renderVenueHeader);
   const venues = generateVenues(uniqueVenues, program, renderFeature);
-  const rowTimeSlots = generateRows(program, renderRow);
+  const rowSlots = generateRows(program, renderRow);
 
   return (
-    <section style={{ height: height }} className={styles.agenda}>
-      <div className={styles.venueHeaders}>{venueHeaders}</div>
-      <div className={styles.content}>
-        <div className={styles.rowTimeSlots}>{rowTimeSlots}</div>
+    <article style={{ height: height }} className={styles.agenda}>
+      <header className={styles.venueHeaders}>{venueHeaders}</header>
+      <main className={styles.content}>
+        <div className={styles.rowSlots}>{rowSlots}</div>
         <div className={styles.venues}>{venues}</div>
-      </div>
-    </section>
+      </main>
+    </article>
   );
 };

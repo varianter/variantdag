@@ -15,7 +15,7 @@ export type Time = {
  *
  * Examples: "Oktetten", "Amfiet"
  */
-export type Venue = string; // e.g
+export type VenueName = string; // e.g
 
 /**
  * A time slot in the program
@@ -30,13 +30,14 @@ export interface Slot {
  */
 export interface Feature extends Slot {
   title: string;
-  venue: Venue;
+  venue: VenueName;
 }
 
 /**
- * Describes a row in the Agenda table with a from and to time setting
+ * Describes a row in the Agenda table that span accross all venues.
+ * Typically used to make an opening in the agenda table, such as a pause or lunch break.
  */
-export interface TimeSlot extends Slot {
+export interface Row extends Slot {
   description?: string;
 }
 
@@ -48,5 +49,5 @@ export type Program = {
   from: Time;
   to: Time;
   features: Feature[];
-  rowTimeSlots: TimeSlot[];
+  rows: Row[];
 };

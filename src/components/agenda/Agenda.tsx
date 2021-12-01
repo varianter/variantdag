@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { time, format } from './agenda-table/utils/timeUtils';
-import { Feature, Program, TimeSlot, Venue } from './agenda-table/types';
+import { Feature, Program, Row, VenueName } from './agenda-table/types';
 import { AgendaTable } from './agenda-table/AgendaTable';
 
 export const programPartOne: Program = {
@@ -45,7 +45,7 @@ export const programPartOne: Program = {
       to: time('11:30'),
     },
   ],
-  rowTimeSlots: [
+  rows: [
     {
       from: time('09:00'),
       to: time('09:15'),
@@ -88,7 +88,7 @@ export const programPartTwo: Program = {
       to: time('16:00'),
     },
   ],
-  rowTimeSlots: [
+  rows: [
     {
       from: time('14:45'),
       to: time('15:00'),
@@ -106,13 +106,13 @@ const renderFeature = (feature: Feature) => (
   </>
 );
 
-const renderRow = (slot: TimeSlot) => (
+const renderRow = (slot: Row) => (
   <div>
     {format(slot.from)} - {format(slot.to)} {slot.description}
   </div>
 );
 
-const renderVenueHeader = (venue: Venue) => <h4>{venue}</h4>;
+const renderVenueHeader = (venue: VenueName) => <h4>{venue}</h4>;
 
 export const Agenda: FC = ({}) => {
   return (

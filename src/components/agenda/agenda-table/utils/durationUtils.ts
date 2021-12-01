@@ -1,9 +1,4 @@
-import { DurationMinutes, Feature, Program, Slot, Time } from '../types';
-
-export const getUniqueVenues = (features: Feature[]) =>
-  features
-    .map((feature) => feature.venue)
-    .filter((venue, index, venues) => venues.indexOf(venue) === index);
+import { DurationMinutes, Program, Slot, Time } from '../types';
 
 export const asDuration = (time: Time) => time.hour * 60 + time.minutes;
 
