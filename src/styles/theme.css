@@ -1,0 +1,7 @@
+:root {
+  --color-background: var(--color-secondary4__tint3);
+
+  --agenda-slot-margin: 0.5rem;
+  --agenda-slot-padding: 0.5rem;
+  --agenda-slot-border-radius: 0.5rem;
+}

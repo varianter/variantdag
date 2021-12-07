@@ -1,7 +1,11 @@
 import { FC } from 'react';
-import { time, format } from './agenda-table/utils/timeUtils';
+import { time } from './agenda-table/utils/timeUtils';
 import { Feature, Program, Row, VenueName } from './agenda-table/types';
 import { AgendaTable } from './agenda-table/AgendaTable';
+import { AgendaHeader } from './agenda-header/AgendaHeader';
+import { AgendaFeature } from './agenda-feature/AgendaFeature';
+import { AgendaRow } from './agenda-row/AgendaRow';
+import { Theme } from './theme';
 
 export const programPartOne: Program = {
   from: time('07:45'),
@@ -12,24 +16,28 @@ export const programPartOne: Program = {
       venue: 'Amfiet',
       from: time('07:45'),
       to: time('08:15'),
+      theme: Theme.FELLES,
     },
     {
       title: 'Velkommen til Variantdag!',
       venue: 'Amfiet',
       from: time('08:15'),
       to: time('08:30'),
+      theme: Theme.FELLES,
     },
     {
       title: 'Prosjektpresentasjon',
       venue: 'Amfiet',
       from: time('08:30'),
       to: time('09:00'),
+      theme: Theme.FELLES,
     },
     {
       title: 'Skudd: hvordan jobber vi sammen?',
       venue: 'Amfiet',
       from: time('09:15'),
       to: time('11:30'),
+      theme: Theme.SKUDD,
     },
     {
       title:
@@ -37,12 +45,14 @@ export const programPartOne: Program = {
       venue: 'Sekstetten',
       from: time('09:15'),
       to: time('11:30'),
+      theme: Theme.LÆRE,
     },
     {
       title: 'Hvordan holde gode workshops?',
       venue: 'Oktetten',
       from: time('09:15'),
       to: time('11:30'),
+      theme: Theme.LÆRE,
     },
   ],
   rows: [
@@ -50,90 +60,35 @@ export const programPartOne: Program = {
       from: time('09:00'),
       to: time('09:15'),
       description: 'Pause',
+      theme: Theme.PAUSE,
     },
     {
       from: time('11:30'),
       to: time('12:30'),
       description: 'Lunsj på Digs',
+      theme: Theme.PAUSE,
     },
   ],
 };
 
-export const programPartTwo: Program = {
-  from: time('12:30'),
-  to: time('16:00'),
-  features: [
-    {
-      title: 'Samarbeidscage for design',
-      venue: 'Digs 5. egt - East',
-      from: time('12:30'),
-      to: time('13:45'),
-    },
-    {
-      title: 'Planlegging av skudd: sky',
-      venue: 'Digs 5. etg - West',
-      from: time('12:30'),
-      to: time('14:45'),
-    },
-    {
-      title: 'Bærekraft og OKR',
-      venue: 'Lounge på Digs',
-      from: time('12:30'),
-      to: time('14:45'),
-    },
-    {
-      title: 'OKR Q4 \n Selskapsstatus',
-      venue: 'Digs 5. egt - East',
-      from: time('15:00'),
-      to: time('16:00'),
-    },
-  ],
-  rows: [
-    {
-      from: time('14:45'),
-      to: time('15:00'),
-      description: 'Pause',
-    },
-  ],
-};
+const renderFeature = (feature: Feature) => <AgendaFeature feature={feature} />;
 
-const renderFeature = (feature: Feature) => (
-  <>
-    <div>
-      {format(feature.from)} - {format(feature.to)}
-    </div>
-    <div>{feature.title}</div>
-  </>
+const renderRow = (slot: Row) => <AgendaRow row={slot} />;
+
+const renderVenueHeader = (venueName: VenueName) => (
+  <AgendaHeader venueName={venueName} />
 );
-
-const renderRow = (slot: Row) => (
-  <div>
-    {format(slot.from)} - {format(slot.to)} {slot.description}
-  </div>
-);
-
-const renderVenueHeader = (venue: VenueName) => <h4>{venue}</h4>;
 
 export const Agenda: FC = ({}) => {
   return (
-    <div>
+    <article>
       <AgendaTable
         program={programPartOne}
         renderFeature={renderFeature}
         renderRow={renderRow}
         renderVenueHeader={renderVenueHeader}
-        height={'1200px'}
+        height={'1000px'}
       />
-
-      <div style={{ height: '100px' }} />
-
-      <AgendaTable
-        program={programPartTwo}
-        renderFeature={renderFeature}
-        renderRow={renderRow}
-        renderVenueHeader={renderVenueHeader}
-        height={'400px'}
-      />
-    </div>
+    </article>
   );
 };

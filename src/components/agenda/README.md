@@ -14,7 +14,7 @@ Agendas consist of the following main elements:
 
 ## The Agenda Table
 
-The `AgendaTable` is the core of the agenta. It is responsible positioning and
+The `AgendaTable` is the core of every agenda. It is responsible positioning and
 sizin it's content in `Slots`:
 
 ![agenda-table](./docs/agenda-table.png)

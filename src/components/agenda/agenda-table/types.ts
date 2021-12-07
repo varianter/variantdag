@@ -1,3 +1,5 @@
+import { ThemeType } from '../theme';
+
 /**
  * Duration created from hours and minutes used for relative time calculation.
  *
@@ -31,6 +33,7 @@ export interface Slot {
 export interface Feature extends Slot {
   title: string;
   venue: VenueName;
+  theme: ThemeType;
 }
 
 /**
@@ -39,6 +42,7 @@ export interface Feature extends Slot {
  */
 export interface Row extends Slot {
   description?: string;
+  theme: ThemeType;
 }
 
 /**

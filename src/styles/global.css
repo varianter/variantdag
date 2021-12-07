@@ -1,9 +1,9 @@
 @import '~@variant/profile/lib/colors/index.module.css';
 @import '~@variant/profile/lib/typography/index.module.css';
+@import './theme.css';
 
 :root {
-  --content-width: 850px;
-  --color-background: var(--color-secondary4__tint3);
+  --content-width: 50rem;
 }
 
 html {

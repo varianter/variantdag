@@ -1,4 +1,5 @@
 .featureSlot {
   position: absolute;
+  overflow: hidden;
   width: 100%;
 }

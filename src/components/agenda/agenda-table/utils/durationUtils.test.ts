@@ -1,5 +1,6 @@
 import { asDuration, calculateSlotPositionStyle } from './durationUtils';
 import { Feature, Program, Time } from '../types';
+import { Theme } from '../../theme';
 
 describe('toDurationMinutes', () => {
   it('translates 0 hours as 0 minutes', () => {
@@ -44,6 +45,7 @@ describe('calculateSlotPositionStyle', () => {
       to: { hour: 9, minutes: 30 },
       title: '',
       venue: '',
+      theme: Theme.ANNET,
     };
 
     const expectedStyle = {
@@ -69,6 +71,7 @@ describe('calculateSlotPositionStyle', () => {
       to: { hour: 10, minutes: 0 },
       title: '',
       venue: '',
+      theme: Theme.ANNET,
     };
 
     const expectedStyle = {
@@ -94,6 +97,7 @@ describe('calculateSlotPositionStyle', () => {
       to: { hour: 9, minutes: 30 },
       title: '',
       venue: '',
+      theme: Theme.ANNET,
     };
 
     const expectedStyle = {

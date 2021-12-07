@@ -1,0 +1,8 @@
+.slot {
+  margin: var(--agenda-slot-margin) var(--agenda-slot-margin) 0 0;
+  padding: var(--agenda-slot-padding);
+  height: calc(100% - var(--agenda-slot-margin));
+  width: calc(100% - var(--agenda-slot-margin));
+  border-radius: var(--agenda-slot-border-radius);
+  box-sizing: border-box;
+}
