@@ -50,7 +50,7 @@ exports[`AgendaTable Renders slots of correct size 1`] = `
         }
       >
         <div>
-          {"from":{"hour":14,"minutes":45},"to":{"hour":15,"minutes":0},"description":"Pause","theme":{"text":"#333333","background":"#EDE8D7"}}
+          {"from":{"hour":14,"minutes":45},"to":{"hour":15,"minutes":0}}
         </div>
       </div>
     </div>
@@ -73,7 +73,7 @@ exports[`AgendaTable Renders slots of correct size 1`] = `
             }
           >
             <div>
-              {"title":"Samarbeidscage for design","venue":"Digs 5. egt - East","from":{"hour":12,"minutes":30},"to":{"hour":13,"minutes":45},"theme":{"text":"#FFFFFF","background":"#E61A6B"}}
+              {"venueName":"Digs 5. egt - East","from":{"hour":12,"minutes":30},"to":{"hour":13,"minutes":45}}
             </div>
           </div>
           <div
@@ -86,7 +86,7 @@ exports[`AgendaTable Renders slots of correct size 1`] = `
             }
           >
             <div>
-              {"title":"OKR Q4 \\n Selskapsstatus","venue":"Digs 5. egt - East","from":{"hour":15,"minutes":0},"to":{"hour":16,"minutes":0},"theme":{"text":"#333333","background":"#03DAC6"}}
+              {"venueName":"Digs 5. egt - East","from":{"hour":15,"minutes":0},"to":{"hour":16,"minutes":0}}
             </div>
           </div>
         </div>
@@ -107,7 +107,7 @@ exports[`AgendaTable Renders slots of correct size 1`] = `
             }
           >
             <div>
-              {"title":"Planlegging av skudd: sky","venue":"Digs 5. etg - West","from":{"hour":13,"minutes":0},"to":{"hour":14,"minutes":45},"theme":{"text":"#333333","background":"#FFC4BC"}}
+              {"venueName":"Digs 5. etg - West","from":{"hour":13,"minutes":0},"to":{"hour":14,"minutes":45}}
             </div>
           </div>
         </div>
@@ -128,7 +128,7 @@ exports[`AgendaTable Renders slots of correct size 1`] = `
             }
           >
             <div>
-              {"title":"Bærekraft og OKR","venue":"Lounge på Digs","from":{"hour":12,"minutes":30},"to":{"hour":14,"minutes":45},"theme":{"text":"#FFFFFF","background":"#423D89"}}
+              {"venueName":"Lounge på Digs","from":{"hour":12,"minutes":30},"to":{"hour":14,"minutes":45}}
             </div>
           </div>
         </div>

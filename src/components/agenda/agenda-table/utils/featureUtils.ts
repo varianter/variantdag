@@ -1,6 +1,6 @@
-import { Feature } from '../types';
+import { FeatureSlot } from '../feature-slot/FeatureSlot';
 
-export const getUniqueVenues = (features: Feature[]) =>
+export const getUniqueVenues = (features: FeatureSlot[]) =>
   features
-    .map((feature) => feature.venue)
+    .map((feature) => feature.venueName)
     .filter((venue, index, venues) => venues.indexOf(venue) === index);

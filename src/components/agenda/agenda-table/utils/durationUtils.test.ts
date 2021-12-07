@@ -1,5 +1,6 @@
 import { asDuration, calculateSlotPositionStyle } from './durationUtils';
-import { Feature, Program, Time } from '../types';
+import { Program, Time } from '../types';
+import { FeatureSlot } from '../feature-slot/FeatureSlot';
 import { Theme } from '../../theme';
 
 describe('toDurationMinutes', () => {
@@ -40,12 +41,10 @@ describe('calculateSlotPositionStyle', () => {
       rows: [],
     };
 
-    const feature: Feature = {
+    const feature: FeatureSlot = {
       from: { hour: 8, minutes: 0 },
       to: { hour: 9, minutes: 30 },
-      title: '',
-      venue: '',
-      theme: Theme.ANNET,
+      venueName: '',
     };
 
     const expectedStyle = {
@@ -66,12 +65,10 @@ describe('calculateSlotPositionStyle', () => {
       rows: [],
     };
 
-    const feature: Feature = {
+    const feature: FeatureSlot = {
       from: { hour: 9, minutes: 0 },
       to: { hour: 10, minutes: 0 },
-      title: '',
-      venue: '',
-      theme: Theme.ANNET,
+      venueName: '',
     };
 
     const expectedStyle = {
@@ -92,12 +89,10 @@ describe('calculateSlotPositionStyle', () => {
       rows: [],
     };
 
-    const feature: Feature = {
+    const feature: FeatureSlot = {
       from: { hour: 8, minutes: 30 },
       to: { hour: 9, minutes: 30 },
-      title: '',
-      venue: '',
-      theme: Theme.ANNET,
+      venueName: '',
     };
 
     const expectedStyle = {

@@ -2,7 +2,13 @@ import { FC } from 'react';
 import styles from './AgendaTable.module.css';
 import { Venue } from './venue/Venue';
 import { FeatureSlot } from './feature-slot/FeatureSlot';
-import { VenueName, Feature, Program, Row } from './types';
+import {
+  FeatureRenderer,
+  HeaderRenderer,
+  Program,
+  RowRenderer,
+  VenueName,
+} from './types';
 import { calculateSlotPositionStyle } from './utils/durationUtils';
 import { getUniqueVenues } from './utils/featureUtils';
 import { RowSlot } from './row-slot/RowSlot';
@@ -11,53 +17,56 @@ import { format } from './utils/timeUtils';
 
 const generateVenueHeaders = (
   uniqueVenues: VenueName[],
-  renderVenueHeader: (venue: string) => React.ReactElement,
+  renderVenueHeader: HeaderRenderer,
 ) =>
   uniqueVenues.map((venue) => (
     <VenueHeader key={venue}>{renderVenueHeader(venue)}</VenueHeader>
   ));
 
-const generateVenues = (
+const generateVenues = <T extends FeatureSlot, K extends RowSlot>(
   uniqueVenues: VenueName[],
-  program: Program,
-  renderFeature: (feature: Feature) => React.ReactElement,
+  program: Program<T, K>,
+  renderFeature: FeatureRenderer<T>,
 ) =>
-  uniqueVenues.map((venue) => {
+  uniqueVenues.map((venueName) => {
     const featuresInVenue = program.features.filter(
-      (feature) => feature.venue === venue,
+      (feature) => feature.venueName === venueName,
     );
 
     const features = featuresInVenue.map((feature) => (
       <FeatureSlot
-        key={feature.title}
+        key={`${format(feature.from)}-${format(feature.to)}-${
+          feature.venueName
+        }`}
         style={calculateSlotPositionStyle(program, feature)}
       >
         {renderFeature(feature)}
       </FeatureSlot>
     ));
 
-    return <Venue key={venue}>{features}</Venue>;
+    return <Venue key={venueName}>{features}</Venue>;
   });
 
-const generateRows = (
-  program: Program,
-  renderRow: (timeSlot: Row) => React.ReactElement,
+const generateRows = <T extends FeatureSlot, K extends RowSlot>(
+  program: Program<T, K>,
+  renderRow: RowRenderer<K>,
 ) =>
-  program.rows.map((row: Row) => (
+  program.rows.map((row: K) => (
     <RowSlot
       key={`${format(row.from)}-${format(row.to)}`}
       style={calculateSlotPositionStyle(program, row)}
-      timeSlot={row}
-      renderContent={renderRow}
-    />
+      rowSlot={row}
+    >
+      {renderRow(row)}
+    </RowSlot>
   ));
 
-type Props = {
-  program: Program;
+type Props<T extends FeatureSlot, K extends RowSlot> = {
+  program: Program<T, K>;
   height: string;
-  renderFeature: (feature: Feature) => React.ReactElement;
-  renderRow: (timeSlot: Row) => React.ReactElement;
-  renderVenueHeader: (venue: VenueName) => React.ReactElement;
+  renderFeature: FeatureRenderer<T>;
+  renderRow: RowRenderer<K>;
+  renderVenueHeader: HeaderRenderer;
 };
 
 /**
@@ -71,13 +80,13 @@ type Props = {
  * @param renderRow - determeines how each row is rendered
  * @param renderVenueHeader - determines how each venue header is rendered
  */
-export const AgendaTable: FC<Props> = ({
+export const AgendaTable = <T extends FeatureSlot, K extends RowSlot>({
   program,
   height,
   renderFeature,
   renderRow,
   renderVenueHeader,
-}) => {
+}: Props<T, K>) => {
   const uniqueVenues = getUniqueVenues(program.features);
   const venueHeaders = generateVenueHeaders(uniqueVenues, renderVenueHeader);
   const venues = generateVenues(uniqueVenues, program, renderFeature);

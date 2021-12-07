@@ -2,10 +2,6 @@ import { colorPairs } from '@variant/profile/lib/colors';
 import { CSSProperties } from 'react';
 
 export type Color = string;
-
-/**
- * Describes how a Row or Feature should look
- */
 export interface ThemeType {
   text: Color;
   background: Color;
