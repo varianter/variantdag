@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AgendaGrid renders a populated agenda 1`] = `
+<section
+  className="grid"
+  style={
+    Object {
+      "gridTemplateColumns": " [Amfiet] 1fr [Torsken] 1fr",
+      "gridTemplateRows": " [kl-0745] 1fr [kl-0800] 1fr [kl-0815] 1fr [kl-0830] 1fr [kl-0845] 1fr [kl-0900] 1fr [kl-0915] 1fr [kl-0930] 1fr [kl-0945] 1fr [kl-1000] 1fr [kl-1015] 1fr [kl-1030] 1fr [kl-1045] 1fr [kl-1100] 1fr [kl-1115] 1fr",
+    }
+  }
+>
+  <div
+    className="feature"
+    style={
+      Object {
+        "backgroundColor": "#FFC4BC",
+        "color": "#333333",
+        "gridColumn": "Amfiet",
+        "gridRowEnd": "kl-0800",
+        "gridRowStart": "kl-0745",
+      }
+    }
+  >
+    <div>
+      07:45
+       - 
+      08:00
+    </div>
+    <div
+      className="title"
+    >
+       
+      Kaffe og mingling
+    </div>
+  </div>
+  <div
+    className="feature"
+    style={
+      Object {
+        "backgroundColor": "#E61A6B",
+        "color": "#FFFFFF",
+        "gridColumn": "Amfiet",
+        "gridRowEnd": "kl-0900",
+        "gridRowStart": "kl-0815",
+      }
+    }
+  >
+    <div>
+      08:15
+       - 
+      09:00
+    </div>
+    <div
+      className="title"
+    >
+       
+      Velkommen
+    </div>
+  </div>
+  <div
+    className="feature"
+    style={
+      Object {
+        "backgroundColor": "#03DAC6",
+        "color": "#333333",
+        "gridColumn": "Amfiet",
+        "gridRowEnd": "kl-1130",
+        "gridRowStart": "kl-0915",
+      }
+    }
+  >
+    <div>
+      09:15
+       - 
+      11:30
+    </div>
+    <div
+      className="title"
+    >
+       
+      Hvordan gjør kunde fornøyd når man sier ting de ikke vil høre?
+    </div>
+  </div>
+  <div
+    className="feature"
+    style={
+      Object {
+        "backgroundColor": "#423D89",
+        "color": "#FFFFFF",
+        "gridColumn": "Torsken",
+        "gridRowEnd": "kl-1000",
+        "gridRowStart": "kl-0915",
+      }
+    }
+  >
+    <div>
+      09:15
+       - 
+      10:00
+    </div>
+    <div
+      className="title"
+    >
+       
+      Workshop om mye spennende opplegg som skal beskrives med veldig, veldig, veldig mange ord.
+    </div>
+  </div>
+  <div
+    className="feature"
+    style={
+      Object {
+        "backgroundColor": "#EDE8D7",
+        "color": "#333333",
+        "gridColumn": "Torsken",
+        "gridRowEnd": "kl-1130",
+        "gridRowStart": "kl-1000",
+      }
+    }
+  >
+    <div>
+      10:00
+       - 
+      11:30
+    </div>
+    <div
+      className="title"
+    >
+       
+      Egenarbeid
+    </div>
+  </div>
+</section>
+`;

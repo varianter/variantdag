@@ -1,0 +1,8 @@
+.feature {
+  border-radius: var(--agenda-slot-border-radius);
+  padding: 0.75rem;
+}
+
+.title {
+  margin-top: 0.25rem;
+}
