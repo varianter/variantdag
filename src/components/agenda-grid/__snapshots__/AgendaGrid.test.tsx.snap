@@ -6,10 +6,32 @@ exports[`AgendaGrid renders a populated agenda 1`] = `
   style={
     Object {
       "gridTemplateColumns": " [Amfiet] 1fr [Torsken] 1fr",
-      "gridTemplateRows": " [kl-0745] 1fr [kl-0800] 1fr [kl-0815] 1fr [kl-0830] 1fr [kl-0845] 1fr [kl-0900] 1fr [kl-0915] 1fr [kl-0930] 1fr [kl-0945] 1fr [kl-1000] 1fr [kl-1015] 1fr [kl-1030] 1fr [kl-1045] 1fr [kl-1100] 1fr [kl-1115] 1fr",
+      "gridTemplateRows": "[headers] 1fr [kl-0745] 1fr [kl-0800] 1fr [kl-0815] 1fr [kl-0830] 1fr [kl-0845] 1fr [kl-0900] 1fr [kl-0915] 1fr [kl-0930] 1fr [kl-0945] 1fr [kl-1000] 1fr [kl-1015] 1fr [kl-1030] 1fr [kl-1045] 1fr [kl-1100] 1fr [kl-1115] 1fr",
     }
   }
 >
+  <h3
+    className="header"
+    style={
+      Object {
+        "gridColumn": "Amfiet",
+        "gridRow": "headers",
+      }
+    }
+  >
+    Amfiet
+  </h3>
+  <h3
+    className="header"
+    style={
+      Object {
+        "gridColumn": "Torsken",
+        "gridRow": "headers",
+      }
+    }
+  >
+    Torsken
+  </h3>
   <div
     className="feature"
     style={
@@ -66,12 +88,12 @@ exports[`AgendaGrid renders a populated agenda 1`] = `
         "color": "#333333",
         "gridColumn": "Amfiet",
         "gridRowEnd": "kl-1130",
-        "gridRowStart": "kl-0915",
+        "gridRowStart": "kl-0930",
       }
     }
   >
     <div>
-      09:15
+      09:30
        - 
       11:30
     </div>
@@ -90,12 +112,12 @@ exports[`AgendaGrid renders a populated agenda 1`] = `
         "color": "#FFFFFF",
         "gridColumn": "Torsken",
         "gridRowEnd": "kl-1000",
-        "gridRowStart": "kl-0915",
+        "gridRowStart": "kl-0930",
       }
     }
   >
     <div>
-      09:15
+      09:30
        - 
       10:00
     </div>
@@ -128,6 +150,52 @@ exports[`AgendaGrid renders a populated agenda 1`] = `
     >
        
       Egenarbeid
+    </div>
+  </div>
+  <div
+    className="row"
+    style={
+      Object {
+        "backgroundColor": "#FFC4BC",
+        "color": "#333333",
+        "gridColumn": "1/-1",
+        "gridRowEnd": "kl-0815",
+        "gridRowStart": "kl-0800",
+      }
+    }
+  >
+    <div>
+      08:00
+       - 
+      08:15
+    </div>
+    <div
+      className="title"
+    >
+      Pause
+    </div>
+  </div>
+  <div
+    className="row"
+    style={
+      Object {
+        "backgroundColor": "#FFC4BC",
+        "color": "#333333",
+        "gridColumn": "1/-1",
+        "gridRowEnd": "kl-0930",
+        "gridRowStart": "kl-0900",
+      }
+    }
+  >
+    <div>
+      09:00
+       - 
+      09:30
+    </div>
+    <div
+      className="title"
+    >
+      Wienerbrød og kaffe
     </div>
   </div>
 </section>

@@ -1,9 +1,7 @@
-import { AgendaGrid } from './AgendaGrid';
-import renderer from 'react-test-renderer';
-import { Program } from './types/program';
-import { Theme } from './types/theme';
+import { Program } from '@components/agenda-grid/types/program';
+import { Theme } from '@components/agenda-grid/types/theme';
 
-const program: Program = {
+export const program: Program = {
   from: '07:45',
   to: '11:30',
   features: [
@@ -59,11 +57,3 @@ const program: Program = {
     },
   ],
 };
-
-describe('AgendaGrid', () => {
-  it('renders a populated agenda', () => {
-    const agenda = renderer.create(<AgendaGrid program={program} />);
-
-    expect(agenda).toMatchSnapshot();
-  });
-});
