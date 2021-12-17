@@ -1,42 +1,56 @@
-import { PropsWithChildren } from 'react';
+import { CSSProperties } from 'react';
+import styles from './Agenda.module.css';
+import { Feature } from './feature/Feature';
+import { Header } from './header/Header';
+import { Row } from './row/Row';
+import { Program } from './types/program';
+import { getUniqueVenues } from './utils/featureUtils';
 import {
-  FeatureRenderer,
-  HeaderRenderer,
-  Program,
-  RowRenderer,
-  VenueName,
-} from './agenda-table/types';
-import { AgendaTable } from './agenda-table/AgendaTable';
-import { AgendaHeader } from './agenda-header/AgendaHeader';
-import { AgendaFeature } from './agenda-feature/AgendaFeature';
-import { AgendaRow } from './agenda-row/AgendaRow';
+  calculateFeaturePosition,
+  calculateGridLayout,
+  calculateRowPosition,
+  calculateHeaderPosition,
+} from './utils/gridLayout';
 
-const renderFeature: FeatureRenderer<AgendaFeature> = (
-  feature: AgendaFeature,
-) => <AgendaFeature feature={feature} />;
+type Props = {
+  program: Program;
+  style?: CSSProperties;
+};
 
-const renderRow: RowRenderer<AgendaRow> = (row: AgendaRow) => (
-  <AgendaRow row={row} />
-);
+export const Agenda = ({ program, style }: Props) => {
+  const uniqueVenues = getUniqueVenues(program.features);
 
-const renderVenueHeader: HeaderRenderer = (venueName: VenueName) => (
-  <AgendaHeader venueName={venueName} />
-);
+  const features = program.features.map((feature) => (
+    <Feature
+      feature={feature}
+      style={calculateFeaturePosition(feature.from, feature.to, feature.venue)}
+      key={`${feature.venue}-${feature.from}-${feature.to}`}
+    />
+  ));
 
-type Props = PropsWithChildren<{
-  program: Program<AgendaFeature, AgendaRow>;
-}>;
+  const rows = program.rows.map((row) => (
+    <Row
+      row={row}
+      style={calculateRowPosition(row.from, row.to)}
+      key={`${row.from}-${row.to}`}
+    />
+  ));
 
-export const Agenda = ({ program }: Props) => {
+  const headers = uniqueVenues.map((venue) => (
+    <Header venue={venue} style={calculateHeaderPosition(venue)} key={venue} />
+  ));
+
   return (
-    <article>
-      <AgendaTable
-        program={program}
-        renderFeature={renderFeature}
-        renderRow={renderRow}
-        renderVenueHeader={renderVenueHeader}
-        height={'1000px'}
-      />
-    </article>
+    <section
+      style={{
+        ...calculateGridLayout(program.from, program.to, uniqueVenues),
+        ...style,
+      }}
+      className={styles.grid}
+    >
+      {headers}
+      {features}
+      {rows}
+    </section>
   );
 };

@@ -1,30 +1,32 @@
 import { program } from './program';
-import { AgendaGrid } from '@components';
+import { Agenda } from '@components';
 
-## Vise program i agenda
+# Bygge en Agenda
+
+## Vise program
 
 Agendaen har relative størrelser på innholdet, slik at et fremlegg på 2 timer er
 fire ganger høyere enn et fremlegg på 30 minutter. Størrelsen hele agendaen
 skaleres ut fra høyden fremlegget med minst tekst.
 
 ```
-  <AgendaGrid program={program} />
+  <Agenda program={program} />
 ```
 
 #### Resultat
 
-<AgendaGrid program={program} />
+<Agenda program={program} />
 
-## Redusere høyde på agenda
+## Redusere høyde
 
-I AgendaGrid 👇 setter vi en maxHeight-stil som presser sammen innholdet noe.
-Det forskyver forholdene litt, slik at eventen som er fra 07:45->08:00 (15 min)
-og eventen fra 09:30->10:00 (30 min) for omtrent samme størrelse. Vi beholder
+I Agenda 👇 setter vi en maxHeight-stil som presser sammen innholdet noe. Det
+forskyver forholdene litt, slik at eventen som er fra 07:45->08:00 (15 min) og
+eventen fra 09:30->10:00 (30 min) for omtrent samme størrelse. Vi beholder
 likevel inntrykket av noe innhold er større enn annet, uten at vi agendaen blir
 veldig høy:
 
 ```
-  <AgendaGrid program={program} style={{ maxHeight: '950px' }} />
+  <Agenda program={program} style={{ maxHeight: '950px' }} />
 ```
 
 Vær oppmerksom på at å begrense høyden kan føre til at noe innhold blir presset
@@ -32,4 +34,4 @@ ut av boksen de tilhører.
 
 #### Resultat
 
-<AgendaGrid program={program} style={{ maxHeight: '950px' }} />
+<Agenda program={program} style={{ maxHeight: '950px' }} />

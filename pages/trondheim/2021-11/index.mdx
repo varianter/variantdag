@@ -1,4 +1,4 @@
-import { AgendaGrid } from '@components';
+import { Agenda } from '@components';
 import { program } from './program';
 
 # Variantdag #11-21 i Trondheim
@@ -13,18 +13,18 @@ oss fra huset er finfin. SosKom skal rigge, for endelig er det klart for
 innflyttingsfest i Varianthuset. Det blir middag, snorklipping, proseccopopping,
 taler og fanfare 🥂 Som vi gleder oss!
 
-<AgendaGrid program={program} />
+<Agenda program={program} />
 
 ## Redusere høyde på agenda
 
-I AgendaGrid 👇 setter vi en maxHeight-stil som presser sammen innholdet noe.
-Det forskyver forholdene litt, slik at eventen som er fra 07:45->08:00 (15 min)
-og eventen fra 09:30->10:00 (30 min) for omtrent samme størrelse. Vi beholder
+I Agenda 👇 setter vi en maxHeight-stil som presser sammen innholdet noe. Det
+forskyver forholdene litt, slik at eventen som er fra 07:45->08:00 (15 min) og
+eventen fra 09:30->10:00 (30 min) for omtrent samme størrelse. Vi beholder
 likevel inntrykket av noe innhold er større enn annet, uten at vi agendaen blir
 veldig høy:
 
 ```
-  <AgendaGrid program={program} style={{ maxHeight: '950px' }} />
+  <Agenda program={program} style={{ maxHeight: '950px' }} />
 ```
 
 Vær oppmerksom på at å begrense høyden kan føre til at noe innhold blir presset
@@ -32,4 +32,4 @@ ut av boksen de tilhører.
 
 #### Resultat
 
-<AgendaGrid program={program} style={{ maxHeight: '950px' }} />
+<Agenda program={program} style={{ maxHeight: '950px' }} />

@@ -1,4 +1,4 @@
-import { AgendaGrid } from './AgendaGrid';
+import { Agenda } from './Agenda';
 import renderer from 'react-test-renderer';
 import { Program } from './types/program';
 import { Theme } from './types/theme';
@@ -60,9 +60,9 @@ const program: Program = {
   ],
 };
 
-describe('AgendaGrid', () => {
+describe('Agenda', () => {
   it('renders a populated agenda', () => {
-    const agenda = renderer.create(<AgendaGrid program={program} />);
+    const agenda = renderer.create(<Agenda program={program} />);
 
     expect(agenda).toMatchSnapshot();
   });

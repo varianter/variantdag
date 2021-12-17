@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AgendaGrid renders a populated agenda 1`] = `
+exports[`Agenda renders a populated agenda 1`] = `
 <section
   className="grid"
   style={

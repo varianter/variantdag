@@ -1,9 +1,0 @@
-.venue {
-  flex-grow: 1;
-  flex-basis: 0;
-}
-
-.featureSlots {
-  height: 100%;
-  position: relative;
-}

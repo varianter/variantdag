@@ -1,5 +1,5 @@
-import { Program } from '@components/agenda-grid/types/program';
-import { Theme } from '@components/agenda-grid/types/theme';
+import { Program } from '@components/agenda/types/program';
+import { Theme } from '@components/agenda/types/theme';
 
 export const program: Program = {
   from: '07:45',
