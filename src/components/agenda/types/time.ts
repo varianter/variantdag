@@ -77,7 +77,4 @@ export const times = [
   '23:45',
 ] as const;
 
-// Weird? Read: https://stackoverflow.com/a/45486495/1461602
-type TimeTuple = typeof times;
-
-export type Time = TimeTuple[number];
+export type Time = typeof times[number];

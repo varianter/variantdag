@@ -7,6 +7,7 @@ import { Slot } from '../types/slot';
 export interface Feature extends Slot {
   venue: string;
   theme: ThemeType;
+  description?: string;
 }
 
 type Props = {
