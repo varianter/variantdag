@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import styles from './AgendaGrid.module.css';
 import { Feature } from './feature/Feature';
 import { Header } from './header/Header';
@@ -13,9 +14,10 @@ import {
 
 type Props = {
   program: Program;
+  style?: CSSProperties;
 };
 
-export const AgendaGrid = ({ program }: Props) => {
+export const AgendaGrid = ({ program, style }: Props) => {
   const uniqueVenues = getUniqueVenues(program.features);
 
   const features = program.features.map((feature) => (
@@ -40,7 +42,10 @@ export const AgendaGrid = ({ program }: Props) => {
 
   return (
     <section
-      style={calculateGridLayout(program.from, program.to, uniqueVenues)}
+      style={{
+        ...calculateGridLayout(program.from, program.to, uniqueVenues),
+        ...style,
+      }}
       className={styles.grid}
     >
       {headers}
