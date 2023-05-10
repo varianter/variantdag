@@ -3,7 +3,7 @@ import { Theme } from '@components/agenda/types/theme';
 
 export const program: Program = {
   from: '07:45',
-  to: '11:30',
+  to: '14:00',
   features: [
     {
       title: 'Kaffe og mingling',
@@ -40,6 +40,13 @@ export const program: Program = {
       to: '11:30',
       venue: 'Torsken',
       theme: Theme.ANNET,
+    },
+    {
+      title: 'test',
+      from: '07:45',
+      to: '14:00',
+      venue: 'test',
+      theme: Theme.FELLES,
     },
   ],
   rows: [
