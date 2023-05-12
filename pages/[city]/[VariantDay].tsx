@@ -12,7 +12,6 @@ import {
 } from 'src/functions/getVariantdag';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // const variantDay = await getVariantdagByCityAndDate('oslo', '2021-11');
   const { city, VariantDay } = params!;
   let varianday = null;
   if (typeof city === 'string' && typeof VariantDay === 'string') {
@@ -49,8 +48,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const VariantDay: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   variantDay,
 }) => {
-  console.log(variantDay.fileContents);
-
   return <div dangerouslySetInnerHTML={{ __html: variantDay.fileContents }} />;
 };
 

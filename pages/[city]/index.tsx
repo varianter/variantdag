@@ -38,7 +38,8 @@ const City: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   variantDays,
 }) => {
   const { asPath } = useRouter();
-  const city = asPath.replaceAll('/', '');
+  const cityPath = asPath;
+  const city = cityPath.replace('/', '');
 
   return (
     <div>
