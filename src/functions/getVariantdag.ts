@@ -6,13 +6,18 @@ import markdownit from 'markdown-it/lib';
 
 const relativePath = 'program/';
 
-export const getAllCities = async () => {
-  const filesAndFolder = await readdir(path.join(process.cwd(), relativePath));
-  const cities = filesAndFolder.filter((fileOrFolderName) => {
+export const getAllFoldersInFoldder = async (folderPath: string) => {
+  const filesAndFolder = await readdir(path.join(process.cwd(), folderPath));
+  const folders = filesAndFolder.filter((fileOrFolderName) => {
     const filePath = path.join(process.cwd(), relativePath, fileOrFolderName);
     const fileOrFolderStat = fs.statSync(filePath);
     return fileOrFolderStat.isDirectory();
   });
+  return folders;
+};
+
+export const getAllCities = async () => {
+  const cities = getAllFoldersInFoldder(relativePath);
   return cities;
 };
 

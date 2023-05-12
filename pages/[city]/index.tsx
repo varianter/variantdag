@@ -22,15 +22,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const variantDays = await getAllVariantdagerByCity('oslo');
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { city } = params!;
+  let variantDays = null;
+  if (typeof city === 'string') {
+    variantDays = await getAllVariantdagerByCity(city);
+  }
   return {
     props: {
       variantDays: variantDays,
     },
   };
 };
-const Oslo: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+const City: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   variantDays,
 }) => {
   const { asPath } = useRouter();
@@ -40,16 +44,17 @@ const Oslo: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <div>
       <h1>Variantdager for {city}</h1>
       <ul>
-        {variantDays.map((day: string) => {
-          return (
-            <li key={day}>
-              <Link href={`${city}/${day}`}>{day}</Link>
-            </li>
-          );
-        })}
+        {variantDays &&
+          variantDays.map((day: string) => {
+            return (
+              <li key={day}>
+                <Link href={`${city}/${day}`}>{day}</Link>
+              </li>
+            );
+          })}
       </ul>
     </div>
   );
 };
 
-export default Oslo;
+export default City;
