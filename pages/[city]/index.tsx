@@ -7,7 +7,7 @@ import {
 import { useRouter } from 'next/dist/client/router';
 import {
   getAllCities,
-  getAllVariantdagerByCity,
+  getAllVariantdaysByCity,
 } from 'src/functions/getVariantdag';
 import Link from 'next/link';
 
@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { city } = params!;
   let variantDays = null;
   if (typeof city === 'string') {
-    variantDays = await getAllVariantdagerByCity(city);
+    variantDays = await getAllVariantdaysByCity(city);
   }
   return {
     props: {
