@@ -21,6 +21,6 @@ export const getAllCities = async () => {
 
 export const getVarriantdayByCity = async (city: string) => {
   const folderpath = relativePath + city;
-  const variantDaysForCity = getAllFoldersInFoldder(folderpath);
-  return variantDaysForCity;
+  const variantdaysForCity = getAllFoldersInFoldder(folderpath);
+  return variantdaysForCity;
 };

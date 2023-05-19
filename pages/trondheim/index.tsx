@@ -3,26 +3,26 @@ import Link from 'next/link';
 import { getVarriantdayByCity } from 'src/functions/getFolderAndFiles';
 
 export const getStaticProps: GetStaticProps = async () => {
-  let variantDays = null;
+  let variantdays = null;
 
-  variantDays = await getVarriantdayByCity('trondheim');
+  variantdays = await getVarriantdayByCity('trondheim');
 
   return {
     props: {
-      variantDays: variantDays,
+      variantdays: variantdays,
     },
   };
 };
 
 const Oslo: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  variantDays,
+  variantdays,
 }) => {
   return (
     <div>
       <h1>Variantdager for Trondheim</h1>
       <ul>
-        {variantDays &&
-          variantDays.map((day: string) => {
+        {variantdays &&
+          variantdays.map((day: string) => {
             return (
               <li key={day}>
                 <Link href={`/trondheim/${day}`}>{day}</Link>
