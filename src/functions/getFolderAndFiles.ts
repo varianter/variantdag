@@ -7,7 +7,7 @@ const relativePath = 'program/';
 export const getAllFoldersInFoldder = async (folderPath: string) => {
   const filesAndFolder = await readdir(path.join(process.cwd(), folderPath));
   const folders = filesAndFolder.filter((fileOrFolderName) => {
-    const filePath = path.join(process.cwd(), relativePath, fileOrFolderName);
+    const filePath = path.join(process.cwd(), folderPath, fileOrFolderName);
     const fileOrFolderStat = fs.statSync(filePath);
     return fileOrFolderStat.isDirectory();
   });
@@ -20,18 +20,7 @@ export const getAllCities = async () => {
 };
 
 export const getVarriantdayByCity = async (city: string) => {
-  const filesAndFolder = await readdir(
-    path.join(process.cwd(), relativePath, city),
-  );
-  const variantDaysForCity = filesAndFolder.filter((fileOrFolderName) => {
-    const filePath = path.join(
-      process.cwd(),
-      relativePath,
-      city,
-      fileOrFolderName,
-    );
-    const fileOrFolderStat = fs.statSync(filePath);
-    return fileOrFolderStat.isDirectory();
-  });
+  const folderpath = relativePath + city;
+  const variantDaysForCity = getAllFoldersInFoldder(folderpath);
   return variantDaysForCity;
 };
