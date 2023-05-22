@@ -8,20 +8,22 @@ import {
   getAllCities,
   getAllVariantdaysByCity,
   getMarkdownObject,
-  getVariantdagByCityAndDate,
 } from 'src/functions/getVariantdag';
+import { MDXRemote } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
+import { Agenda, AgendaDetails } from '@components';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { city, VariantDay } = params!;
-  let varianday = null;
+  const program = await import(`program/${city}/${VariantDay}/program.ts`);
+  const data = { program: program.program }; // Assuming the `program` object has a `default` property
+  let mdxSource = null;
   if (typeof city === 'string' && typeof VariantDay === 'string') {
-    varianday = await getMarkdownObject(city, VariantDay);
+    const variantDay = await getMarkdownObject(city, VariantDay);
+    mdxSource = await serialize(variantDay, { scope: data });
   }
-  return {
-    props: {
-      variantDay: varianday,
-    },
-  };
+
+  return { props: { source: mdxSource } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -45,10 +47,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
+const components = { Agenda, AgendaDetails };
+
 const VariantDay: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  variantDay,
+  source,
 }) => {
-  return <div dangerouslySetInnerHTML={{ __html: variantDay.fileContents }} />;
+  return (
+    <div>
+      <MDXRemote {...source} components={components} />
+    </div>
+  );
 };
 
 export default VariantDay;
