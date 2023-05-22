@@ -1,7 +1,11 @@
-import type { AppProps } from 'next/app';
 import { FC } from 'react';
 import { SiteLayout } from '@components';
 import '@styles/global.css';
+
+interface AppProps {
+  Component: FC<any>;
+  pageProps: any;
+}
 
 const VariantdagApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (

@@ -10,7 +10,5 @@ type Props = PropsWithChildren<LinkProps>;
  * More info: https://github.com/varianter/next-med-mdx/blob/main/pages/examples/using-links.mdx
  */
 export const Link = ({ children, ...rest }: Props) => (
-  <NextLink {...rest}>
-    <a>{children}</a>
-  </NextLink>
+  <NextLink {...rest}>{children}</NextLink>
 );
