@@ -30,7 +30,7 @@
     "identity-obj-proxy": "^3.0.0",
     "markdown-it": "^13.0.1",
     "next": "^13.4.3",
-    "next-mdx-remote": "^4.4.1",
+    "next-mdx-remote": "4.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-test-renderer": "^18.0.0-rc.0"
