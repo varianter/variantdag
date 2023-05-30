@@ -4,7 +4,7 @@ import fs from 'fs';
 
 const relativePath = 'program/';
 
-export const getAllFoldersInFoldder = async (folderPath: string) => {
+export const getAllSubfoldersInFolder = async (folderPath: string) => {
   const filesAndFolder = await readdir(path.join(process.cwd(), folderPath));
   const folders = filesAndFolder.filter((fileOrFolderName) => {
     const filePath = path.join(process.cwd(), relativePath, fileOrFolderName);
@@ -15,7 +15,7 @@ export const getAllFoldersInFoldder = async (folderPath: string) => {
 };
 
 export const getAllCities = async () => {
-  const cities = getAllFoldersInFoldder(relativePath);
+  const cities = getAllSubfoldersInFolder(relativePath);
   return cities;
 };
 
