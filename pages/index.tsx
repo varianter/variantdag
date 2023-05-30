@@ -1,6 +1,5 @@
 import { Link } from '@components';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import { ReactChild, ReactFragment, ReactPortal } from 'react';
 import { getAllCities } from 'src/functions/getVariantdag';
 
 export const getStaticProps: GetStaticProps = async () => {
