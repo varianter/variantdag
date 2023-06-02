@@ -36,13 +36,6 @@ export const Agenda = ({ program, style }: Props) => {
     ),
   );
 
-  // const rows = program.rows.map((row) => (
-  //   <Row
-  //     row={row}
-  //     style={calculateRowPosition(row.from, row.to)}
-  //     key={`${row.from}-${row.to}`}
-  //   />
-  // ));
 
   const headers = uniqueVenues.map((venue) => (
     <Header venue={venue} style={calculateHeaderPosition(venue)} key={venue} />

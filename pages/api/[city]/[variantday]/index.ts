@@ -3,30 +3,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { createHash } from 'crypto';
 import { isVenueEvent } from '@components/agenda/utils/featureUtils';
 
-const testEvent = `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//ZContent.net//Zap Calendar 1.0//EN
-CALSCALE:GREGORIAN
-METHOD:PUBLISH
-BEGIN:VEVENT
-SUMMARY:Abraham Lincoln
-UID:c7614cff-3549-4a00-9152-d25cc1fe077d
-SEQUENCE:0
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-RRULE:FREQ=YEARLY;INTERVAL=1;BYMONTH=2;BYMONTHDAY=12
-DTSTART:20080213
-DTEND:20080214
-DTSTAMP:20150421T141403
-CATEGORIES:U.S. Presidents,Civil War People
-LOCATION:Hodgenville\, Kentucky
-GEO:37.5739497;-85.7399606
-DESCRIPTION:Born February 12\, 1809\nSixteenth President (1861-1865)\n\n\n
-\nhttp://AmericanHistoryCalendar.com
-URL:http://americanhistorycalendar.com/peoplecalendar/1,328-abraham-lincoln
-END:VEVENT
-END:VCALENDAR`;
-
 const calendar = (events: string) => `
 BEGIN:VCALENDAR
 VERSION:2.0
