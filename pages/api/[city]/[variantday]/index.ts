@@ -1,5 +1,7 @@
 import { Program } from '@components/agenda/types/program';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { createHash } from 'crypto';
+import { isVenueEvent } from '@components/agenda/utils/featureUtils';
 
 const testEvent = `BEGIN:VCALENDAR
 VERSION:2.0
@@ -68,20 +70,30 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Content-Disposition', 'attachment; filename="agenda.ics"');
   res.setHeader('Content-Type', 'text/calendar; charset=utf-8');
 
-  const program: Program = require(`/program/${city}/${variantday}/program.ts`);
+  const program: Program =
+    require(`/program/${city}/${variantday}/program.ts`).program;
 
   const events = program.events
     .map((event) => {
+      const hash = createHash('sha256').update(JSON.stringify(event));
+      const hashUID = hash.digest('hex');
       const revisionSequence = 0;
       const summary = event.title;
-      const hashUID = 'c7614cff-3549-4a00-9152-d25cc1fe077d';
       const status = 'CONFIRMED';
-      const dateStart = `${program.date}T${event.from}:00`;
-      const dateEnd = `${program.date}T${event.to}:00`;
-      const dateStamp = '20150421T141403';
-      const location = 'Hodgenville, Kentucky';
-      const description =
-        'Born February 12, 1809\nSixteenth President (1861-1865)\n\n\n\nhttp://AmericanHistoryCalendar.com';
+      const dateStart = `${program.date.replaceAll(
+        '-',
+        '',
+      )}T${event.from.replaceAll(':', '')}00`;
+      const dateEnd = `${program.date.replaceAll(
+        '-',
+        '',
+      )}T${event.to.replaceAll(':', '')}00`;
+      const dateStamp = new Date()
+        .toISOString()
+        .replace(/[-:]/g, '')
+        .replace(/\.\d{3}/, '');
+      const location = isVenueEvent(event) ? event.venue : '';
+      const description = event.description ?? '';
 
       return eventString(
         revisionSequence,
@@ -98,6 +110,5 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     .join('\n');
 
   const calendarString = calendar(events);
-
   res.status(200).send(calendarString);
 }

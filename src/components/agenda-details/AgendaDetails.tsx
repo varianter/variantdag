@@ -3,11 +3,11 @@ import styles from './AgendaDetails.module.css';
 import { FeatureDetails } from './feature-details/FeatureDetails';
 
 type Props = {
-  features: Feature[];
+  events: Feature[];
 };
 
-export const AgendaDetails = ({ features }: Props) => {
-  const details = features.map((feature) => (
+export const AgendaDetails = ({ events }: Props) => {
+  const details = events.map((feature) => (
     <FeatureDetails key={feature.title} feature={feature} />
   ));
 
