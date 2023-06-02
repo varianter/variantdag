@@ -12,7 +12,6 @@ import {
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import { Agenda, AgendaDetails } from '@components';
-import Link from 'next/link';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { city, variantday } = params!;
@@ -24,7 +23,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     mdxSource = await serialize(variantDay, { scope: data });
   }
 
-  return { props: { source: mdxSource, city, variantday } };
+  return { props: { source: mdxSource } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -52,13 +51,10 @@ const components = { Agenda, AgendaDetails };
 
 const VariantDay: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   source,
-  city,
-  variantday,
 }) => {
   return (
     <div>
       <MDXRemote {...source} components={components} />
-      <Link href={`/${city}/${variantday}.ics`}>Legg til i kalender</Link>
     </div>
   );
 };

@@ -1,2 +1,19 @@
 .agendaDetails {
 }
+
+.calendarLink {
+  width: fit-content;
+  margin: 3rem auto;
+  padding: 1rem 2rem;
+  border-radius: 4rem;
+  text-align: center;
+  font-weight: 500;
+  color: var(--color-secondary1__shade1--text);
+  background-color: var(--color-secondary1);
+  transition: background-color 0.25s ease-out, scale 0.1s ease-out;
+}
+
+.calendarLink:hover {
+  color: var(--color-secondary1__shade1--text);
+  background-color: var(--color-secondary1__shade1);
+}
