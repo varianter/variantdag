@@ -4,7 +4,7 @@ import { Feature } from './feature/Feature';
 import { Header } from './header/Header';
 import { Row } from './row/Row';
 import { Program } from './types/program';
-import { getUniqueVenues } from './utils/featureUtils';
+import { getUniqueVenues, isVenueEvent } from './utils/featureUtils';
 import {
   calculateFeaturePosition,
   calculateGridLayout,
@@ -18,23 +18,31 @@ type Props = {
 };
 
 export const Agenda = ({ program, style }: Props) => {
-  const uniqueVenues = getUniqueVenues(program.features);
+  const uniqueVenues = getUniqueVenues(program.events);
 
-  const features = program.features.map((feature) => (
-    <Feature
-      feature={feature}
-      style={calculateFeaturePosition(feature.from, feature.to, feature.venue)}
-      key={`${feature.venue}-${feature.from}-${feature.to}`}
-    />
-  ));
+  const events = program.events.map((event) =>
+    !isVenueEvent(event) ? (
+      <Row
+        row={event as Row}
+        style={calculateRowPosition(event.from, event.to)}
+        key={`${event.from}-${event.to}`}
+      />
+    ) : (
+      <Feature
+        feature={event as Feature}
+        style={calculateFeaturePosition(event.from, event.to, event.venue)}
+        key={`${event.venue}-${event.from}-${event.to}`}
+      />
+    ),
+  );
 
-  const rows = program.rows.map((row) => (
-    <Row
-      row={row}
-      style={calculateRowPosition(row.from, row.to)}
-      key={`${row.from}-${row.to}`}
-    />
-  ));
+  // const rows = program.rows.map((row) => (
+  //   <Row
+  //     row={row}
+  //     style={calculateRowPosition(row.from, row.to)}
+  //     key={`${row.from}-${row.to}`}
+  //   />
+  // ));
 
   const headers = uniqueVenues.map((venue) => (
     <Header venue={venue} style={calculateHeaderPosition(venue)} key={venue} />
@@ -49,8 +57,7 @@ export const Agenda = ({ program, style }: Props) => {
       className={styles.grid}
     >
       {headers}
-      {features}
-      {rows}
+      {events}
     </section>
   );
 };
