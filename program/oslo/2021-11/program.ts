@@ -2,9 +2,10 @@ import { Program } from '@components/agenda/types/program';
 import { Theme } from '@components/agenda/types/theme';
 
 export const program: Program = {
+  date: '2021-11-11',
   from: '07:45',
   to: '14:00',
-  features: [
+  events: [
     {
       title: 'Kaffe og mingling',
       from: '07:45',
@@ -41,15 +42,6 @@ export const program: Program = {
       venue: 'Torsken',
       theme: Theme.ANNET,
     },
-    {
-      title: 'test',
-      from: '07:45',
-      to: '14:00',
-      venue: 'test',
-      theme: Theme.FELLES,
-    },
-  ],
-  rows: [
     {
       title: 'Pause',
       from: '08:00',

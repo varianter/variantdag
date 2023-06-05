@@ -8,7 +8,7 @@ export interface ThemeType {
 }
 
 /**
- * Contains color pairs for text and background suitable for agenda features of
+ * Contains color pairs for text and background suitable for agenda events of
  * different types.
  * */
 export const Theme = {

@@ -4,9 +4,10 @@ import { Program } from './types/program';
 import { Theme } from './types/theme';
 
 const program: Program = {
+  date: '2020-01-01',
   from: '07:45',
   to: '11:30',
-  features: [
+  events: [
     {
       title: 'Kaffe og mingling',
       from: '07:45',
@@ -43,8 +44,6 @@ const program: Program = {
       venue: 'Torsken',
       theme: Theme.ANNET,
     },
-  ],
-  rows: [
     {
       title: 'Pause',
       from: '08:00',

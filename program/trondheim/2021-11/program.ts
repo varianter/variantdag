@@ -2,9 +2,10 @@ import { Program } from '@components/agenda/types/program';
 import { Theme } from '@components/agenda/types/theme';
 
 export const program: Program = {
+  date: '2021-11-11',
   from: '07:45',
   to: '11:30',
-  features: [
+  events: [
     {
       title: 'Kaffe og mingling',
       from: '07:45',
@@ -49,8 +50,6 @@ export const program: Program = {
       description:
         'Avsatt tid til å lære nye ting. Det kan for eksempel være å jobbe med presentasjoner til Variantdager eller lærekvelder. Skrive bloggposter eller jobbe med interne prosjekter.',
     },
-  ],
-  rows: [
     {
       title: 'Pause',
       from: '08:00',
