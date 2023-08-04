@@ -2,69 +2,66 @@ import { Event } from '../types/program';
 import { Theme } from '../types/theme';
 import { TrelloList } from '../types/trello';
 
-export default function getProgramFromListById(listId: string) {
-  const events: Event[] = [];
-  fetch(
-    `https://api.trello.com/1/lists/${listId}/cards?key=cf063842e14021c0d2d0fdc485794b53&token=ATTAb0c2f8d6965e9ad54b0e07dfd8e85801450f10548a3e7eecf9231bd88ee7b6637C903F2B`,
-    {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    },
-  )
-    .then((response) => {
-      return response.text();
-    })
-    .then((text) => {
-      const parsed = JSON.parse(text);
-      parsed.map((event: any) => {
-        const eventObject: Event = {
-          title: event.name,
-          from: '07:45',
-          to: '08:00',
-          theme: Theme.PAUSE,
-        };
-        events.push(eventObject);
+import dotenv from 'dotenv';
+dotenv.config();
+
+// Access environment variables using process.env
+const apiKey = process.env.API_KEY;
+const apiToken = process.env.API_TOKEN;
+
+export const getProgramFromListById = async (listId: string) => {
+  try {
+    const eventsList: Event[] = [];
+    const response = await fetch(
+      `https://api.trello.com/1/lists/${listId}/cards?key=${apiKey}&token=${apiToken}`,
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Network response was not ok. Status: ${response.status}`,
+      );
+    }
+
+    const data = await response.json();
+    data.map((event: any) => {
+      eventsList.push({
+        title: event.name,
+        from: '07:45',
+        to: '08:00',
+        theme: Theme.PAUSE,
       });
-    })
-    .catch((err) => console.error(err));
+    });
+    return {
+      date: '2021-11-11',
+      from: '07:45',
+      to: '16:00',
+      events: eventsList,
+    };
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];
+  }
+};
 
-  return {
-    date: '2021-11-11',
-    from: '07:45',
-    to: '16:00',
-    events: events,
-  };
-}
+export async function getAllListId(): Promise<TrelloList[]> {
+  try {
+    const response = await fetch(
+      `https://api.trello.com/1/boards/63c6b70cef906601f4afc679/lists?key=${apiKey}&token=${apiToken}`,
+    );
 
-export function getAllListId() {
-  const lists: TrelloList[] = [];
-  fetch(
-    'https://api.trello.com/1/boards/63c6b70cef906601f4afc679/lists?key=cf063842e14021c0d2d0fdc485794b53&token=ATTAb0c2f8d6965e9ad54b0e07dfd8e85801450f10548a3e7eecf9231bd88ee7b6637C903F2B',
-    {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    },
-  )
-    .then((response) => {
-      return response.text();
-    })
-    .then((text) => {
-      const parsed = JSON.parse(text);
-      parsed.map((trelloList: any) => {
-        const trelloListObject: TrelloList = {
-          id: trelloList.id,
-          name: trelloList.name,
-        };
-        if (trelloListObject.name.toLowerCase().includes('variantdag')) {
-          lists.push(trelloListObject);
-        }
-      });
-    })
-    .catch((err) => console.error(err));
+    if (!response.ok) {
+      throw new Error(
+        `Network response was not ok. Status: ${response.status}`,
+      );
+    }
 
-  return lists;
+    const data: TrelloList[] = await response.json();
+    const filteredData: TrelloList[] = data.filter((obj) =>
+      obj.name.toLowerCase().includes('variantdag'),
+    );
+    return filteredData;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];
+  }
 }
