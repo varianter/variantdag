@@ -36,7 +36,6 @@ export const Agenda = ({ program, style }: Props) => {
     ),
   );
 
-
   const headers = uniqueVenues.map((venue) => (
     <Header venue={venue} style={calculateHeaderPosition(venue)} key={venue} />
   ));

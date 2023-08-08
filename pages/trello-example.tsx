@@ -1,4 +1,4 @@
-import { Agenda, AgendaDetails } from '@components';
+import { Agenda } from '@components';
 import {
   getAllListId,
   getProgramFromListById,
@@ -7,11 +7,11 @@ import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 
 export const getStaticProps: GetStaticProps = async () => {
   const ids = await getAllListId();
-  const program = await getProgramFromListById(ids[0].id);
+  const program = await getProgramFromListById(ids[1].id);
 
   return {
     props: {
-      name: ids[0].name,
+      name: ids[1].name,
       program: program,
     },
   };

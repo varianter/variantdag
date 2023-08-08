@@ -1,11 +1,10 @@
 import { Event } from '../types/program';
 import { Theme } from '../types/theme';
-import { TrelloList } from '../types/trello';
-
+import { Card, TrelloDescription, TrelloList } from '../types/trello';
 import dotenv from 'dotenv';
-dotenv.config();
+import { Time, times } from '../types/time';
 
-// Access environment variables using process.env
+dotenv.config();
 const apiKey = process.env.API_KEY;
 const apiToken = process.env.API_TOKEN;
 
@@ -23,12 +22,13 @@ export const getProgramFromListById = async (listId: string) => {
     }
 
     const data = await response.json();
-    data.map((event: any) => {
+    data.map((event: Card) => {
+      const descriptionData: TrelloDescription = divideDescription(event.desc);
       eventsList.push({
         title: event.name,
-        from: '07:45',
-        to: '08:00',
-        theme: Theme.PAUSE,
+        from: descriptionData.fra,
+        to: descriptionData.til,
+        theme: Theme.LÆRE,
       });
     });
     return {
@@ -64,4 +64,33 @@ export async function getAllListId(): Promise<TrelloList[]> {
     console.error('Error fetching data:', error);
     return [];
   }
+}
+
+export function divideDescription(description: string): TrelloDescription {
+  // Split the string by the newline character "\n"
+  const lines = description.split('\n');
+
+  // Create an object to store the extracted values
+  const extractedValues: Partial<TrelloDescription> = {};
+
+  // Loop through the lines and extract the key-value pairs
+  lines.forEach((line) => {
+    // Split the line by ":" and make sure it contains a key-value pair
+    const parts = line.split(':');
+    if (parts.length >= 2) {
+      const key = parts[0].trim();
+      const value = parts.slice(1).join(':').trim(); // Rejoin the remaining parts after the first colon
+
+      // Map the key to the corresponding property in TrelloDescription
+      if (key === 'ansvarlig') {
+        extractedValues.ansvarlig = value;
+      } else if (key === 'fra' && times.includes(value as Time)) {
+        extractedValues.fra = value as Time;
+      } else if (key === 'til' && times.includes(value as Time)) {
+        extractedValues.til = value as Time;
+      }
+    }
+  });
+
+  return extractedValues as TrelloDescription;
 }
