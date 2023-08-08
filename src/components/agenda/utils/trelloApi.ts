@@ -1,6 +1,6 @@
 import { Event } from '../types/program';
-import { Theme } from '../types/theme';
-import { Card, TrelloDescription, TrelloList } from '../types/trello';
+import { Theme, ThemeType } from '../types/theme';
+import { Card, Label, TrelloDescription, TrelloList } from '../types/trello';
 import dotenv from 'dotenv';
 import { Time, times } from '../types/time';
 
@@ -24,11 +24,12 @@ export const getProgramFromListById = async (listId: string) => {
     const data = await response.json();
     data.map((event: Card) => {
       const descriptionData: TrelloDescription = divideDescription(event.desc);
+      const theme: ThemeType = getColorFromLabel(event.labels);
       eventsList.push({
         title: event.name,
         from: descriptionData.fra,
         to: descriptionData.til,
-        theme: Theme.LÆRE,
+        theme: theme,
       });
     });
     return {
@@ -94,3 +95,17 @@ export function divideDescription(description: string): TrelloDescription {
 
   return extractedValues as TrelloDescription;
 }
+
+const getColorFromLabel = (labels: Label[]): ThemeType => {
+  let theme: ThemeType = Theme.ANNET;
+  labels.map((label) => {
+    if (label.name === 'Design 🎨' || label.name === 'Utvikling 🤖') {
+      theme = Theme.LÆRE;
+    } else if (label.name === 'Generelt / for alle') {
+      theme = Theme.FELLES;
+    } else if (label.name === 'Lyntaler ⚡️') {
+      theme = Theme.SKUDD;
+    }
+  });
+  return theme;
+};

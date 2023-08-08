@@ -30,7 +30,7 @@ type Badge = {
   start: null;
 };
 
-type Label = {
+export type Label = {
   id: string;
   idBoard: string;
   name: string;
