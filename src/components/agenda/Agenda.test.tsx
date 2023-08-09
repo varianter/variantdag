@@ -20,14 +20,14 @@ const program: Program = {
       from: '08:15',
       to: '09:00',
       venue: 'Amfiet',
-      theme: Theme.FELLES,
+      theme: Theme.DESIGN,
     },
     {
       title: 'Hvordan gjør kunde fornøyd når man sier ting de ikke vil høre?',
       from: '09:30',
       to: '11:30',
       venue: 'Amfiet',
-      theme: Theme.SKUDD,
+      theme: Theme.LYNTALE,
     },
     {
       title:
@@ -35,14 +35,14 @@ const program: Program = {
       from: '09:30',
       to: '10:00',
       venue: 'Torsken',
-      theme: Theme.LÆRE,
+      theme: Theme.UTVIKLING,
     },
     {
       title: 'Egenarbeid',
       from: '10:00',
       to: '11:30',
       venue: 'Torsken',
-      theme: Theme.ANNET,
+      theme: Theme.FELLES,
     },
     {
       title: 'Pause',

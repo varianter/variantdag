@@ -25,7 +25,7 @@ export const program: Program = {
       from: '09:30',
       to: '11:30',
       venue: 'Amfiet',
-      theme: Theme.SKUDD,
+      theme: Theme.LYNTALE,
     },
     {
       title:
@@ -33,14 +33,14 @@ export const program: Program = {
       from: '09:30',
       to: '10:00',
       venue: 'Torsken',
-      theme: Theme.LÆRE,
+      theme: Theme.DESIGN,
     },
     {
       title: 'Egenarbeid',
       from: '10:00',
       to: '11:30',
       venue: 'Torsken',
-      theme: Theme.ANNET,
+      theme: Theme.FELLES,
     },
     {
       title: 'Pause',

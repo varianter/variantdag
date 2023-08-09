@@ -97,14 +97,16 @@ export function divideDescription(description: string): TrelloDescription {
 }
 
 const getColorFromLabel = (labels: Label[]): ThemeType => {
-  let theme: ThemeType = Theme.ANNET;
+  let theme: ThemeType = Theme.PAUSE;
   labels.map((label) => {
-    if (label.name === 'Design 🎨' || label.name === 'Utvikling 🤖') {
-      theme = Theme.LÆRE;
+    if (label.name === 'Design 🎨') {
+      theme = Theme.DESIGN;
+    } else if (label.name === 'Utvikling 🤖') {
+      theme = Theme.UTVIKLING;
+    } else if (label.name === 'Lyntale ⚡') {
+      theme = Theme.LYNTALE;
     } else if (label.name === 'Generelt / for alle') {
       theme = Theme.FELLES;
-    } else if (label.name === 'Lyntaler ⚡️') {
-      theme = Theme.SKUDD;
     }
   });
   return theme;

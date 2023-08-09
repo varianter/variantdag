@@ -12,19 +12,19 @@ export interface ThemeType {
  * different types.
  * */
 export const Theme = {
-  FELLES: {
+  DESIGN: {
     text: colorPairs.primary.default.text,
     background: colorPairs.primary.default.bg,
   } as ThemeType,
-  LÆRE: {
+  UTVIKLING: {
     text: colorPairs.secondary1.default.text,
     background: colorPairs.secondary1.default.bg,
   } as ThemeType,
-  SKUDD: {
+  LYNTALE: {
     text: colorPairs.secondary2.default.text,
     background: colorPairs.secondary2.default.bg,
   } as ThemeType,
-  ANNET: {
+  FELLES: {
     text: colorPairs.secondary4.default.text,
     background: colorPairs.secondary4.default.bg,
   } as ThemeType,
