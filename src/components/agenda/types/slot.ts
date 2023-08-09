@@ -7,4 +7,5 @@ export interface Slot {
   title: string;
   from: Time;
   to: Time;
+  responsible: string;
 }

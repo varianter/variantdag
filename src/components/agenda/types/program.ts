@@ -17,6 +17,7 @@ export type Event = {
   from: Time;
   to: Time;
   theme: ThemeType;
+  responsible?: string;
   description?: string;
 };
 

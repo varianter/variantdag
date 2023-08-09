@@ -39,10 +39,10 @@ export type Label = {
 };
 
 export type TrelloDescription = {
-  ansvarlig: string;
-  fra: Time;
-  til: Time;
-  lokale: string;
+  responsible: string;
+  from: Time;
+  to: Time;
+  venue: string;
 };
 
 export type Card = {

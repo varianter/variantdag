@@ -25,20 +25,28 @@ export const getProgramFromListById = async (listId: string) => {
     data.map((event: Card) => {
       const descriptionData: TrelloDescription = divideDescription(event.desc);
       const theme: ThemeType = getColorFromLabel(event.labels);
-      if (descriptionData.lokale !== undefined) {
+      if (descriptionData.venue !== undefined) {
         eventsList.push({
           title: event.name,
-          from: descriptionData.fra,
-          to: descriptionData.til,
+          from: descriptionData.from,
+          to: descriptionData.to,
           theme: theme,
-          venue: descriptionData.lokale,
+          venue: descriptionData.venue,
+          responsible:
+            descriptionData.responsible != undefined
+              ? descriptionData.responsible
+              : '',
         });
       } else {
         eventsList.push({
           title: event.name,
-          from: descriptionData.fra,
-          to: descriptionData.til,
+          from: descriptionData.from,
+          to: descriptionData.to,
           theme: theme,
+          responsible:
+            descriptionData.responsible != undefined
+              ? descriptionData.responsible
+              : '',
         });
       }
     });
@@ -94,13 +102,13 @@ export function divideDescription(description: string): TrelloDescription {
 
       // Map the key to the corresponding property in TrelloDescription
       if (key === 'ansvarlig') {
-        extractedValues.ansvarlig = value;
+        extractedValues.responsible = value;
       } else if (key === 'fra' && times.includes(value as Time)) {
-        extractedValues.fra = value as Time;
+        extractedValues.from = value as Time;
       } else if (key === 'til' && times.includes(value as Time)) {
-        extractedValues.til = value as Time;
+        extractedValues.to = value as Time;
       } else if (key === 'lokale') {
-        extractedValues.lokale = value;
+        extractedValues.venue = value;
       }
     }
   });

@@ -1,5 +1,4 @@
 import { ThemeType, toStyle } from '../types/theme';
-import { Time } from '../types/time';
 import { CSSProperties } from 'react';
 import styles from './Feature.module.css';
 import { Slot } from '../types/slot';
@@ -16,7 +15,7 @@ type Props = {
 };
 
 export const Feature = ({
-  feature: { title, from, to, theme },
+  feature: { title, from, to, theme, responsible },
   style,
 }: Props) => {
   return (
@@ -24,6 +23,7 @@ export const Feature = ({
       <div>
         {from} - {to}
       </div>
+      {responsible && <div className={styles.title}> {responsible}</div>}
       <div className={styles.title}> {title}</div>
     </div>
   );

@@ -17,6 +17,9 @@ export const Row = ({ row, style }: Props) => (
     <div>
       {row.from} - {row.to}
     </div>
-    <div className={styles.title}>{row.title}</div>
+    <div className={styles.title}>
+      {row.title}
+      {row.responsible}
+    </div>
   </div>
 );
