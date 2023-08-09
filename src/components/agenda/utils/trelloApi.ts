@@ -1,4 +1,4 @@
-import { Event } from '../types/program';
+import { Event, VenueEvent } from '../types/program';
 import { Theme, ThemeType } from '../types/theme';
 import { Card, Label, TrelloDescription, TrelloList } from '../types/trello';
 import dotenv from 'dotenv';
@@ -10,7 +10,7 @@ const apiToken = process.env.API_TOKEN;
 
 export const getProgramFromListById = async (listId: string) => {
   try {
-    const eventsList: Event[] = [];
+    const eventsList: (Event | VenueEvent)[] = [];
     const response = await fetch(
       `https://api.trello.com/1/lists/${listId}/cards?key=${apiKey}&token=${apiToken}`,
     );
@@ -25,12 +25,22 @@ export const getProgramFromListById = async (listId: string) => {
     data.map((event: Card) => {
       const descriptionData: TrelloDescription = divideDescription(event.desc);
       const theme: ThemeType = getColorFromLabel(event.labels);
-      eventsList.push({
-        title: event.name,
-        from: descriptionData.fra,
-        to: descriptionData.til,
-        theme: theme,
-      });
+      if (descriptionData.lokale !== undefined) {
+        eventsList.push({
+          title: event.name,
+          from: descriptionData.fra,
+          to: descriptionData.til,
+          theme: theme,
+          venue: descriptionData.lokale,
+        });
+      } else {
+        eventsList.push({
+          title: event.name,
+          from: descriptionData.fra,
+          to: descriptionData.til,
+          theme: theme,
+        });
+      }
     });
     return {
       date: '2021-11-11',
@@ -89,6 +99,8 @@ export function divideDescription(description: string): TrelloDescription {
         extractedValues.fra = value as Time;
       } else if (key === 'til' && times.includes(value as Time)) {
         extractedValues.til = value as Time;
+      } else if (key === 'lokale') {
+        extractedValues.lokale = value;
       }
     }
   });

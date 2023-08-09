@@ -42,6 +42,7 @@ export type TrelloDescription = {
   ansvarlig: string;
   fra: Time;
   til: Time;
+  lokale: string;
 };
 
 export type Card = {
