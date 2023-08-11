@@ -8,4 +8,5 @@ export interface Slot {
   from: Time;
   to: Time;
   responsible: string;
+  description: string;
 }

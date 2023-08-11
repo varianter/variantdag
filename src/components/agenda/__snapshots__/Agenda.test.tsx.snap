@@ -52,8 +52,10 @@ exports[`Agenda renders a populated agenda 1`] = `
     <div
       className="title"
     >
-       
-      Kaffe og mingling
+      <h4>
+        Kaffe og mingling
+         
+      </h4>
     </div>
   </div>
   <div
@@ -76,8 +78,10 @@ exports[`Agenda renders a populated agenda 1`] = `
     <div
       className="title"
     >
-       
-      Velkommen
+      <h4>
+        Velkommen
+         
+      </h4>
     </div>
   </div>
   <div
@@ -100,8 +104,10 @@ exports[`Agenda renders a populated agenda 1`] = `
     <div
       className="title"
     >
-       
-      Hvordan gjør kunde fornøyd når man sier ting de ikke vil høre?
+      <h4>
+        Hvordan gjør kunde fornøyd når man sier ting de ikke vil høre?
+         
+      </h4>
     </div>
   </div>
   <div
@@ -124,8 +130,10 @@ exports[`Agenda renders a populated agenda 1`] = `
     <div
       className="title"
     >
-       
-      Workshop om mye spennende opplegg som skal beskrives med veldig, veldig, veldig mange ord.
+      <h4>
+        Workshop om mye spennende opplegg som skal beskrives med veldig, veldig, veldig mange ord.
+         
+      </h4>
     </div>
   </div>
   <div
@@ -148,8 +156,10 @@ exports[`Agenda renders a populated agenda 1`] = `
     <div
       className="title"
     >
-       
-      Egenarbeid
+      <h4>
+        Egenarbeid
+         
+      </h4>
     </div>
   </div>
   <div
@@ -172,7 +182,10 @@ exports[`Agenda renders a populated agenda 1`] = `
     <div
       className="title"
     >
-      Pause
+      <h4>
+        Pause
+         
+      </h4>
     </div>
   </div>
   <div
@@ -195,7 +208,10 @@ exports[`Agenda renders a populated agenda 1`] = `
     <div
       className="title"
     >
-      Wienerbrød og kaffe
+      <h4>
+        Wienerbrød og kaffe
+         
+      </h4>
     </div>
   </div>
 </section>

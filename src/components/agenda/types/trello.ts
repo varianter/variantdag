@@ -42,6 +42,7 @@ export type TrelloDescription = {
   responsible: string;
   from: Time;
   to: Time;
+  description?: string;
   venue: string;
 };
 

@@ -36,6 +36,7 @@ export const getProgramFromListById = async (listId: string) => {
             descriptionData.responsible != undefined
               ? descriptionData.responsible
               : '',
+          description: descriptionData.description,
         });
       } else {
         eventsList.push({
@@ -47,6 +48,7 @@ export const getProgramFromListById = async (listId: string) => {
             descriptionData.responsible != undefined
               ? descriptionData.responsible
               : '',
+          description: descriptionData.description,
         });
       }
     });
@@ -109,6 +111,8 @@ export function divideDescription(description: string): TrelloDescription {
         extractedValues.to = value as Time;
       } else if (key === 'lokale') {
         extractedValues.venue = value;
+      } else if (key === 'beskrivelse') {
+        extractedValues.description = value;
       }
     }
   });

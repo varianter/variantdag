@@ -6,7 +6,6 @@ import { Slot } from '../types/slot';
 export interface Feature extends Slot {
   venue: string;
   theme: ThemeType;
-  description?: string;
 }
 
 type Props = {
@@ -15,7 +14,7 @@ type Props = {
 };
 
 export const Feature = ({
-  feature: { title, from, to, theme, responsible },
+  feature: { title, from, to, theme, responsible, description },
   style,
 }: Props) => {
   return (
@@ -23,8 +22,12 @@ export const Feature = ({
       <div>
         {from} - {to}
       </div>
-      {responsible && <div className={styles.title}> {responsible}</div>}
-      <div className={styles.title}> {title}</div>
+      <div className={styles.title}>
+        <h4>
+          {title} {responsible}
+        </h4>
+        {description}
+      </div>
     </div>
   );
 };
