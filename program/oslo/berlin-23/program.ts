@@ -42,7 +42,7 @@ export const program: Program = {
       theme: Theme.PAUSE,
     },
     {
-      title: 'Setetrekk Martine',
+      title: 'Et dypdykk i putetrekk',
       from: '14:30',
       to: '14:45',
       venue: 'Haus für Poesie',
